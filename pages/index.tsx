@@ -1,7 +1,14 @@
+import { Stack } from "@chakra-ui/react";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
-  return <h1>Hello</h1>;
+  return (
+    <>
+      <Stack className="w-4/5 m-auto">
+        
+      </Stack>
+    </>
+  );
 };
 
 export default Home;
