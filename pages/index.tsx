@@ -5,7 +5,7 @@ import { PokemonList, SearchBar } from "../components";
 const Home: NextPage = () => {
   return (
     <>
-      <Stack className="w-4/5 m-auto">
+      <Stack className="w-[95%] lg:w-4/5 m-auto">
         <SearchBar />
         <PokemonList />
       </Stack>
