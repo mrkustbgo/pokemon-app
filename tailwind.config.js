@@ -12,6 +12,9 @@ module.exports = {
         buttonBorder: "rgb(36, 41, 63)",
         inputBorder: "rgb(47, 90, 255)",
       },
+      backgroundImage: {
+        'pokeball-svg': "url('/background-pokeball.svg')",
+       }
     },
   },
   plugins: [],
