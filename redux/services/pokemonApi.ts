@@ -15,7 +15,8 @@ export const pokemonApi = createApi({
     // const offset = 9 * (page - 1);
     getPokemonListOfPokemon: builder.query<PokemonList, string>({
       query: (offset) => `/pokemon?offset=${offset}&limit=9`,
-    }),
+    }), // return nito is => name at url https://pokeapi.co/api/v2/pokemon/1/
+
     //fetch pokemon by type
     getPokemonByType: builder.query<PokemonType, string>({
       query: (type) => `pokemon/${type}`,
