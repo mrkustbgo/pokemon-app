@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        searchBarBorder: "rgb(36, 41, 63)", 
+        lineBorder: "rgb(36, 41, 63)",
         buttonBorder: "rgb(36, 41, 63)",
         inputBorder: "rgb(47, 90, 255)",
       },

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const SearchBar: NextPage = () => {
   return (
-    <Stack className="border-b border-solid border-searchBarBorder pb-5">
+    <Stack className="border-b border-solid border-lineBorder pb-5">
       <Button className="bg-[#151a37] py-3 px-4 rounded-lg flex justify-center items-center gap-[0.5rem] font-bold text-white leading-[150%] border border-solid border-buttonBorder w-[111.83px] h-[50px]">
         <Image src="/icon-home.svg" height={24} width={24} alt="Icon Home" />
         Home

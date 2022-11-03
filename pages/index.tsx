@@ -1,15 +1,21 @@
 import { Stack } from "@chakra-ui/react";
 import type { NextPage } from "next";
-import { PokemonList, SearchBar, HeroSection } from "../components";
+import { Footer, HeroSection, PokemonList, SearchBar } from "../components";
 
 const Home: NextPage = () => {
   return (
     <>
+      {/* HERO SECTION - HEADER */}
       <HeroSection />
-      <Stack className="w-[95%] lg:w-4/5 m-auto">
+      {/* CONTAINER BELOW HERO */}
+      <Stack className="w-[95%] lg:max-w-[78rem] m-auto">
+        {/* SEARCH BAR */}
         <SearchBar />
+        {/* POKEMON LIST SECTION */}
         <PokemonList />
       </Stack>
+      {/* FOOTER */}
+      <Footer />
     </>
   );
 };
