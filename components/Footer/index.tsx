@@ -22,18 +22,21 @@ const Footer: NextPage = () => {
           width={32}
           height={32}
           alt="Linked logo"
+          className="cursor-pointer"
         />
         <Image
           src="/logo-github.svg"
           width={32}
           height={32}
           alt="Github logo"
+          className="cursor-pointer"
         />
         <Image
           src="/logo-telegram.svg"
           width={32}
           height={32}
           alt="Telegram Logo"
+          className="cursor-pointer"
         />
       </Flex>
     </Box>

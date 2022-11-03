@@ -1,20 +1,40 @@
-import { Box, Button, Input, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Stack, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Image from "next/image";
+import { pokemonTypes } from "../../utils/pokemonTypes";
 
 const SearchBar: NextPage = () => {
   return (
-    <Stack className="border-b border-solid border-lineBorder pb-5">
+    <Stack className="border-b border-solid border-lineBorder pb-5 ]">
       <Button className="bg-[#151a37] py-3 px-4 rounded-lg flex justify-center items-center gap-[0.5rem] font-bold text-white leading-[150%] border border-solid border-buttonBorder w-[111.83px] h-[50px]">
         <Image src="/icon-home.svg" height={24} width={24} alt="Icon Home" />
         Home
       </Button>
-      <Box className="lg:flex lg:items-center lg:justify-between ">
+      <Text className="text-2xl leading[135%] font-bold mb-4 ">
+        Search by types
+      </Text>
+      <Box className="lg:flex lg:items-center lg:justify-between">
         <Box>
-          <Text className="text-2xl leading[135%] font-bold mb-4 ">
-            Search by types
-          </Text>
-          SLIDER COMPONENT
+          <Box className="w-[464px] overflow-x-scroll">
+            <Flex className="w-[368px]" gap={7}>
+              {pokemonTypes.map((type) => (
+                <Button
+                  className="flex items-center gap-2 py-1 px-2 rounded-lg font-normal capitalize text-white"
+                  style={{
+                    backgroundColor: `${type.color}`,
+                  }}
+                >
+                  <Image
+                    src={type.image}
+                    height={32}
+                    width={32}
+                    alt={`${type.alt}`}
+                  />
+                  {type.name}
+                </Button>
+              ))}
+            </Flex>
+          </Box>
         </Box>
         <form className="relative">
           <Input
