@@ -1,4 +1,4 @@
-import { Box, Button, Heading, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Heading, Text, VStack } from "@chakra-ui/react";
 import Image from "next/image";
 
 type Props = {};
@@ -40,6 +40,7 @@ const Content = (props: Props) => {
           width={488}
           height={528}
           alt="pkoemon-logo"
+          priority
         />
       </Box>
     </Box>
