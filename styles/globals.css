@@ -16,8 +16,8 @@ body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
   font-size: 100%;
-  background-color: rgb(6, 11, 40);
-  color: rgb(255, 255, 255);
+  background-color: rgb(6, 11, 40) !important;
+  color: rgb(255, 255, 255) !important;
 }
 
 /* SCROLL */

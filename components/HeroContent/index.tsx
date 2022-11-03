@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Image from "next/image";
 import { BsLightningCharge } from "react-icons/bs";
@@ -15,6 +15,36 @@ const Content: NextPage = () => {
           <Text fontWeight="bold" color="white" fontSize="2xl">
             #006
           </Text>
+          <Box
+            gap={2}
+            mb={4}
+            className="flex items-center justify-center xl:justify-start w-full"
+          >
+            <Text
+              bg="rgb(255, 153, 0)"
+              className="flex items-center rounded-lg py-1 px-2 font-normal capitalize gap-1 justify-center"
+            >
+              <Image
+                src="/pokemonTypes/fire.svg"
+                width={16}
+                height={16}
+                alt="Fire icon"
+              />
+              Fire
+            </Text>
+            <Text
+              bg="rgb(137, 189, 255)"
+              className="flex items-center rounded-lg py-1 px-2 font-normal capitalize gap-1 justify-center"
+            >
+              <Image
+                src="/pokemonTypes/flying.svg"
+                width={16}
+                height={16}
+                alt="Fire icon"
+              />
+              Flying
+            </Text>
+          </Box>
           <Heading color="white" as="h1" size="4xl">
             CHARIZARD
           </Heading>
@@ -26,8 +56,10 @@ const Content: NextPage = () => {
           </Text>
           <Button
             leftIcon={<BsLightningCharge />}
+            bg="white"
             size="lg"
-            className="w-full bg-white text-[#E14043] font-bold text-base"
+            _hover={{ bg: "#fff" }}
+            className="w-full bg-white text-[#E14043] font-bold text-base md:h-[48px] md:w-[208px] xl:w-full"
           >
             More Details
           </Button>
