@@ -1,22 +1,54 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { resourceLimits } from "worker_threads";
 import { PokemonList } from "../../interfaces/poke-list-interface";
 import { PokemonSearch } from "../../interfaces/poke-search-interface";
 import { PokemonType } from "../../interfaces/poke-type-interface";
 
 const baseUrl = `https://pokeapi.co/api/v2`;
 
+
+const getPokemonData = async (pokemon: string) => {
+  try {
+    const getPokemonURL = `${baseUrl}/pokemon/${pokemon}`
+    const response = await fetch(getPokemonURL);
+    const data = await response.json()
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const handlePokemonData = (data: any) => {
+  try {
+    return data?.results.map(async (pokemon: { name: string }) => await getPokemonData(pokemon?.name))
+  } catch (err) {
+    console.log(err)
+  }
+};
+
+
 // Define a service using a base URL and expected endpoints
 export const pokemonApi = createApi({
   reducerPath: "pokemonApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
-
   endpoints: (builder) => ({
-    //list of pokemon card which is 9 in the user inteface
-    // const offset = 9 * (page - 1);
-    getPokemonListOfPokemon: builder.query<PokemonList, string>({
-      query: (offset) => `/pokemon?offset=${offset}&limit=9`,
-    }), // return nito is => name at url https://pokeapi.co/api/v2/pokemon/1/
+    getPokemonListOfPokemon: builder.query({
+      query: (offset: number | string) => ({
+        url: `/pokemon?offset=${offset}&limit=9`,
+        responseHandler: async (response) => {
+          /* GET POKEMON LIST RESPONSE */
+          const data = await response.json();
 
+          /* HANDLE POKEMON DATA USING POKEMON LIST RESPONSE */
+          const pokemonListData = await handlePokemonData(data);
+
+          /* USE PROMISE CONSTRUCTOR TO HANDLE ALL POKEMON DATA RESPONSES */
+          const result = Promise.all(pokemonListData);
+
+          return result;
+        },
+      }),
+    }), 
     //fetch pokemon by type
     getPokemonByType: builder.query<PokemonType, string>({
       query: (type) => `pokemon/${type}`,
