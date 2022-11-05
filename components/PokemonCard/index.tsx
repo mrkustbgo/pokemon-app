@@ -1,13 +1,16 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { PokemonSearch } from "../../interfaces/poke-search-interface";
+import { pokemonTypes } from "../../utils/pokemonTypes";
 
 type Props = {
   pokeData: PokemonSearch;
 };
 
 const PokemonCard: NextPage<Props> = ({ pokeData }) => {
+  const [buttonColor, setButtonColor] = useState("");
   const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokeData.id}.png`;
 
   const { id, name, height, weight } = pokeData;
@@ -18,7 +21,13 @@ const PokemonCard: NextPage<Props> = ({ pokeData }) => {
     else return `#${id}`;
   };
 
-  console.log(pokeData);
+  useEffect(() => {
+    pokemonTypes.map((type) => {
+      if (type.name === pokeData?.types[0]?.type.name) {
+        setButtonColor(type.color);
+      }
+    });
+  }, []);
 
   return (
     <Box
@@ -50,7 +59,14 @@ const PokemonCard: NextPage<Props> = ({ pokeData }) => {
         <Text>{height / 10} m</Text>
       </Flex>
       <Box className="h-12 absolute bottom-0 left-0 right-0">
-        <Button className="w-full flex gap-2 items-center" height="full">
+        <Button
+          bg={buttonColor}
+          className="w-full flex gap-2 items-center text-white font-bold"
+          height="full"
+          style={{
+            borderRadius: "0px 0px 1.5rem 1.1rem",
+          }}
+        >
           <Image src="/icon-bolt.svg" height={24} width={24} alt="bolt" />
           More Details
         </Button>
