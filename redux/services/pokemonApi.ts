@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { resourceLimits } from "worker_threads";
 import { PokemonList } from "../../interfaces/poke-list-interface";
 import { PokemonSearch } from "../../interfaces/poke-search-interface";
 import { PokemonType } from "../../interfaces/poke-type-interface";
@@ -7,25 +6,17 @@ import { PokemonType } from "../../interfaces/poke-type-interface";
 const baseUrl = `https://pokeapi.co/api/v2`;
 
 
-const getPokemonData = async (pokemon: string) => {
+const handlePokemonListData = (data: any) => {
   try {
-    const getPokemonURL = `${baseUrl}/pokemon/${pokemon}`
-    const response = await fetch(getPokemonURL);
-    const data = await response.json()
-    return data;
+    return data?.results.map(async (pokemon: { name: string }) => {
+      const response = await fetch(`${baseUrl}/pokemon/${pokemon?.name}`);
+      const data = response.json()
+      return data;
+    })
   } catch (err) {
-    console.log(err);
+    return err;
   }
 }
-
-const handlePokemonData = (data: any) => {
-  try {
-    return data?.results.map(async (pokemon: { name: string }) => await getPokemonData(pokemon?.name))
-  } catch (err) {
-    console.log(err)
-  }
-};
-
 
 // Define a service using a base URL and expected endpoints
 export const pokemonApi = createApi({
@@ -40,7 +31,7 @@ export const pokemonApi = createApi({
           const data = await response.json();
 
           /* HANDLE POKEMON DATA USING POKEMON LIST RESPONSE */
-          const pokemonListData = await handlePokemonData(data);
+          const pokemonListData = handlePokemonListData(data);
 
           /* USE PROMISE CONSTRUCTOR TO HANDLE ALL POKEMON DATA RESPONSES */
           const result = Promise.all(pokemonListData);
@@ -48,7 +39,7 @@ export const pokemonApi = createApi({
           return result;
         },
       }),
-    }), 
+    }),
     //fetch pokemon by type
     getPokemonByType: builder.query<PokemonType, string>({
       query: (type) => `pokemon/${type}`,
@@ -63,6 +54,7 @@ export const pokemonApi = createApi({
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
 export const {
+  useGetPokemonDataQuery,
   useGetPokemonBySearchQuery,
   useGetPokemonListOfPokemonQuery,
   useGetPokemonByTypeQuery,
