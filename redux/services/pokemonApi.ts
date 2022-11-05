@@ -16,7 +16,7 @@ const handlePokemonListData = (data: any) => {
   } catch (err) {
     return err;
   }
-}
+};
 
 // Define a service using a base URL and expected endpoints
 export const pokemonApi = createApi({
@@ -54,7 +54,6 @@ export const pokemonApi = createApi({
 // Export hooks for usage in function components, which are
 // auto-generated based on the defined endpoints
 export const {
-  useGetPokemonDataQuery,
   useGetPokemonBySearchQuery,
   useGetPokemonListOfPokemonQuery,
   useGetPokemonByTypeQuery,
