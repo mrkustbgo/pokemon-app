@@ -46,8 +46,8 @@ const PokemonCard: NextPage<Props> = ({ pokeData }) => {
         ))}
       </Flex>
       <Flex gap={4} alignItems="center" justifyContent="center">
-        <Text>{weight}</Text>
-        <Text>{height}</Text>
+        <Text>{weight / 10} kg</Text>
+        <Text>{height / 10} m</Text>
       </Flex>
       <Box className="h-12 absolute bottom-0 left-0 right-0">
         <Button className="w-full flex gap-2 items-center" height="full">
